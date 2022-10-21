@@ -31,3 +31,6 @@ app.listen(PORT, () => {
     console.log(`Server is running .....${PORT}`)
     // res.send("")
 })
+
+//the data rendering page is
+//http://localhost:8000/api/channel/channelbasic
