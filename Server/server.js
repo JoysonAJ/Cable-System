@@ -3,6 +3,8 @@ const app = express();
 const db = require("./db");
 const channel_Basic_Model = require("./models/channel_basic");
 const chBasicRoute = require("./routes/chBasicRoute");
+const registerRoute = require("./routes/registerRoute");
+const loginRoute = require("./routes/loginRoute")
 
 app.use(express.json());
 
@@ -11,18 +13,10 @@ app.get('/', (req, res) => {
 })
 
 app.use("/api/channel",chBasicRoute);
+app.use("/api/users",registerRoute)
+// app.use("/api/user",loginRoute)
+app.use("/api/users",registerRoute)
 
-{/* app.get("/getchannel", (req, res) => {
-    channel_Basic_Model.find({}, (err, docs) => {
-        if (err) {
-            console.log(docs);
-            console.log(err);
-        } else {
-            console.log(docs);
-            res.send(docs);
-        }
-    });
- })*/}
 
 const PORT = process.env.PORT || 8000;
 
