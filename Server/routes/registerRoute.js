@@ -5,6 +5,12 @@ const User = require("../models/registerModel");
 router.post("/register", async (req, res) => {
     const {name, email, userId, password} = req.body
 
+    // const existingUser = await User.find({
+    //     email, userId
+    // })
+    // if (existingUser.length > 0) {
+    //     return res.status(400).json({message: "User already Exists"})
+    // }
     const newUser = new User(
         {name, email, userId, password}
     )
@@ -33,7 +39,7 @@ router.post("/login", async (req, res) => {
                 isReceptionist: user[0].isReceptionist,
                 _id: user[0]._id,
             };
-            res.send(currentUser )
+            res.send(currentUser)
 
         }
     } catch (e) {
