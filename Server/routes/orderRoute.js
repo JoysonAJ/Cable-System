@@ -111,9 +111,10 @@ router.post("/recharge_order", async (req, res) => {
                 receipt_email:
                 token.email,
 
-            }, {
-                idempotencyKey: uuidv4()
             }
+            // {
+            //     idempotencyKey: uuidv4()
+            // }
         );
 
         // res.status(500).json({message: "payment going", paymentIntent})
@@ -130,7 +131,7 @@ router.post("/recharge_order", async (req, res) => {
             newOrder.save();
             res.send("Payment sucessfull")
         }
-        res.json({obj: paymentIntent})
+        // res.json({obj: paymentIntent})
     } catch (e) {
         console.log("Failed......")
         console.log(e)

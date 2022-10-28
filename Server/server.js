@@ -6,6 +6,7 @@ const chBasicRoute = require("./routes/chBasicRoute");
 const registerRoute = require("./routes/registerRoute");
 const orderRoute = require("./routes/orderRoute")
 const loginRoute = require("./routes/loginRoute")
+const GetUserRoute = require("./routes/getUserOrderRoute")
 
 app.use(express.json());
 
@@ -18,6 +19,7 @@ app.use("/api/users", registerRoute)
 // app.use("/api/user",loginRoute)
 app.use("/api/users", registerRoute)
 app.use("/api/orders/", orderRoute)
+app.use("/api/orders/", GetUserRoute)
 
 
 const PORT = process.env.PORT || 8000;
