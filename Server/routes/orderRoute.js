@@ -3,6 +3,7 @@ const router = express.Router();
 const {v4: uuidv4} = require('uuid');
 const stripe = require('stripe')
 ('sk_test_51LwRWZSG6dv3OaeAceSvr5DirmqvATZemBS2xeZYYJbhMP5Th8vVE3WyKZDj0XMDDy8UBNfxxT9FqDEDtjCiRXgO00d7YbAUo1');
+const order = require("../models/orderModel");
 
 
 router.post("/recharge_orderZ", async (req, res) => {
@@ -79,21 +80,23 @@ router.post("/recharge_order", async (req, res) => {
         const customer = await stripe.customers.create({
             email: token.email,
             source: token.id,
+            name:currentUser.name
         });
 
         var paymentIntent = await stripe.paymentIntents.create({
-
             amount: (subTotal * 100),
             currency: "INR",
             // payment_method_types: ["card"],
-            metadata: {custName},
+            metadata: {
+                custName
+            },
             customer: customer.id,
-            payment_method: 'pm_card_visa'
+            payment_method: 'pm_card_visa',
         })
 
-        const clientSecret = paymentIntent.id;
+        const paymentId = paymentIntent.id;
         var paymentIntent = await stripe.paymentIntents.update(
-            clientSecret,
+            paymentId,
             {
                 metadata: {
                     order_id: '6735'
@@ -101,19 +104,33 @@ router.post("/recharge_order", async (req, res) => {
             }
         );
         var paymentIntent = await stripe.paymentIntents.confirm(
-            clientSecret,
+            paymentId,
             {
                 payment_method:
                     'pm_card_visa',
                 receipt_email:
-                token.email
+                token.email,
+
+            }, {
+                idempotencyKey: uuidv4()
             }
         );
 
-        res.status(500).json({message: "payment going", clientSecret})
+        // res.status(500).json({message: "payment going", paymentIntent})
         if (paymentIntent) {
-            console.log("DOne for the day")
+            console.log("hgguyjg")
+            const newOrder = new order({
+                name: currentUser.name,
+                email: currentUser.email,
+                userId: currentUser._id,
+                order_Items: cartItem,
+                orderAmount: subTotal,
+                transcation_Id: paymentId
+            })
+            newOrder.save();
+            res.send("Payment sucessfull")
         }
+        res.json({obj: paymentIntent})
     } catch (e) {
         console.log("Failed......")
         console.log(e)
