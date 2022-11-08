@@ -123,7 +123,8 @@ router.post("/recharge_order", async (req, res) => {
             const newOrder = new order({
                 name: currentUser.name,
                 email: currentUser.email,
-                userId: currentUser._id,
+                Id: currentUser._id,
+                userId: currentUser.userId,
                 order_Items: cartItem,
                 orderAmount: subTotal,
                 transcation_Id: paymentId

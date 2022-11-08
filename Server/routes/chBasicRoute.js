@@ -5,7 +5,9 @@ const channelPack = require("../models/channel_basic");
 // router.get("/getallchannel", async (req, res) => {
 router.get("/channelbasic", async (req, res) => {
     try {
+        console.log("here we came..")
         const channels = await channelPack.find({});
+        // console.log(channels)
         res.send(channels);
     } catch (e) {
         console.log(e)

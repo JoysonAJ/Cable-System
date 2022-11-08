@@ -13,13 +13,14 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send("Server is working");
 })
-
+console.log("All routes woriking here")
 app.use("/api/channel", chBasicRoute);
+app.use("/admin/admin/api/channel", chBasicRoute);
 app.use("/api/users", registerRoute)
 // app.use("/api/user",loginRoute)
-app.use("/api/users", registerRoute)
+// app.use("/api/users", registerRoutesterRoute)
 app.use("/api/orders/", orderRoute)
-app.use("/api/orders/", GetUserRoute)
+app.use("/api/getorder/", GetUserRoute)
 
 
 const PORT = process.env.PORT || 8000;

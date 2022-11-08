@@ -12,6 +12,11 @@ const orderSchema = new Schema({
         required: [true, 'email is required']
     },
 
+    Id: {
+        type: String,
+        required: true
+    },
+
     userId: {
         type: String,
         required: true
