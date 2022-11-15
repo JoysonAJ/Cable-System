@@ -15,4 +15,17 @@ router.get("/channelbasic", async (req, res) => {
     }
 });
 
+router.get("/addchannel", async (req, res) => {
+    console.log("the new route calling")
+    const {newChannel} = req.body
+    try {
+        console.log(newChannel)
+        res.send("Done for the day")
+    } catch (e) {
+        console.log(e)
+        return res.status(400).json({message: e})
+    }
+
+});
+
 module.exports = router;

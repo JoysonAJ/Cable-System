@@ -7,6 +7,7 @@ const registerRoute = require("./routes/registerRoute");
 const orderRoute = require("./routes/orderRoute")
 const loginRoute = require("./routes/loginRoute")
 const GetUserRoute = require("./routes/getUserOrderRoute")
+const AdminRoute = require("./routes/AdminRoute")
 
 app.use(express.json());
 
@@ -14,6 +15,10 @@ app.get('/', (req, res) => {
     res.send("Server is working");
 })
 console.log("All routes woriking here")
+
+// app.use("api/adminchannel", addNewChannelRoute);
+app.use("/api/admin/", AdminRoute);
+
 app.use("/api/channel", chBasicRoute);
 app.use("/admin/admin/api/channel", chBasicRoute);
 app.use("/api/users", registerRoute)
