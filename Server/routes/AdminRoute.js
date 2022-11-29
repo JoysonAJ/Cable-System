@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const channel_basic = require("../models/channel_basic");
 const channelPack = require("../models/channel_basic");
+const orderModel = require("../models/orderModel");
 
 router.post("/addchannel", async (req, res) => {
 
@@ -89,6 +90,18 @@ router.post("/deleteChannel", async (req, res) => {
         res.status(200).send("Pack deleted Successfully")
     } catch (e) {
         res.status(404).json({message: e})
+    }
+})
+
+
+router.get("/getallorder", async (req, res) => {
+
+    try {
+        const order = await orderModel.find({})
+        console.log(order[1])
+        res.status(200).send(order)
+    } catch (e) {
+        console.log(e)
     }
 })
 
