@@ -13,6 +13,7 @@ router.post('/getuserorder', async (req, res) => {
 
     try {
         const orders = await Order.find({userId}).sort({_id: '-1'})
+        console.log(order)
         res.status(200).send(orders);
     } catch (e) {
         res.status(400).json({

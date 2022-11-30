@@ -3,6 +3,7 @@ const router = express.Router();
 const channel_basic = require("../models/channel_basic");
 const channelPack = require("../models/channel_basic");
 const orderModel = require("../models/orderModel");
+const User = require("../models/registerModel");
 
 router.post("/addchannel", async (req, res) => {
 
@@ -24,11 +25,6 @@ router.post("/addchannel", async (req, res) => {
             categories: newChannel.type,
             image: newChannel.image,
             Description: decsc
-
-
-            // channelDesc : newChannel.description,
-
-
         })
         newChannelPack.save();
         res.status(201).send("New pack added ")
@@ -50,7 +46,6 @@ router.post("/getChannelbyID", async (req, res) => {
     } catch (e) {
         return res.status(400).json({message: e})
     }
-
 });
 
 router.post("/updatechannelpack", async (req, res) => {
@@ -93,7 +88,6 @@ router.post("/deleteChannel", async (req, res) => {
     }
 })
 
-
 router.get("/getallorder", async (req, res) => {
 
     try {
@@ -106,4 +100,27 @@ router.get("/getallorder", async (req, res) => {
 })
 
 
+router.get("/getalluserdetails", async (req, res) => {
+
+    try {
+        const user = await User.find({})
+        console.log(user)
+        res.status(200).send(user)
+        // console.log("hello ......")
+    } catch (e) {
+        console.log(e)
+        res.send(400).json({message: e.stack})
+    }
+})
+
+router.post("/deleteusers",async(req,res)=>{
+    const userId = req.body.userId;
+
+    try {
+        await User.findByIdAndDelete({_id: userId})
+        res.status(200).send("user deleted.......")
+    } catch (e) {
+        res.status(400).json({message:e.stack   })
+    }
+})
 module.exports = router;
