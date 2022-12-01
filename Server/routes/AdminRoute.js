@@ -103,7 +103,7 @@ router.get("/getallorder", async (req, res) => {
 router.get("/getalluserdetails", async (req, res) => {
 
     try {
-        const user = await User.find({})
+        const user = await User.find({isAdmin:false , isReceptionist:false})
         console.log(user)
         res.status(200).send(user)
         // console.log("hello ......")
