@@ -8,6 +8,8 @@ const orderRoute = require("./routes/orderRoute")
 const loginRoute = require("./routes/loginRoute")
 const GetUserRoute = require("./routes/getUserOrderRoute")
 const AdminRoute = require("./routes/AdminRoute")
+const communityRouter = require("./routes/CommunityRoute")
+
 
 app.use(express.json());
 
@@ -16,7 +18,6 @@ app.get('/', (req, res) => {
 })
 console.log("All routes woriking here")
 
-// app.use("api/adminchannel", addNewChannelRoute);
 app.use("/api/admin/", AdminRoute);
 
 app.use("/api/channel", chBasicRoute);
@@ -26,6 +27,8 @@ app.use("/api/users", registerRoute)
 // app.use("/api/users", registerRoutesterRoute)
 app.use("/api/orders/", orderRoute)
 app.use("/api/getorder/", GetUserRoute)
+
+app.use("/api/community/",communityRouter)
 
 
 const PORT = process.env.PORT || 8000;
