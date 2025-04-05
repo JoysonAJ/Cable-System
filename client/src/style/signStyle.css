@@ -1,0 +1,57 @@
+.loginInput{
+    margin-top: 20px !important;
+
+}
+
+. btn-register{
+    margin-left: 140px;
+    margin-right: 60px;
+    width: 250px;
+}
+
+.loginCard{
+    margin-top: 150px;
+    width: 400px;
+    height: 400px;
+    /*margin-left: 550px;*/
+    padding: 50px;
+}
+
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.btn-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingIcon{
+    height: 80px;
+    width: 80px;
+}
+
+.btn-logout{
+    width: 100%;
+}
+
+.user-drop-down{
+    padding: 20px;
+
+
+}
+.drop-down-login-details{
+    border-bottom: 2px solid blue;
+    padding: 10px;
+    margin-left: 0px;
+
+}
+
+.navigation{
+    position: fixed;
+    z-index: 100;
+}

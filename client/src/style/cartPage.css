@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+.cart-heading{
+    font-family: 'Bangers', cursive !important;
+    color: firebrick;
+}
+
+.cart-text{
+    font-size: 20px !important;
+}
+.fa-plus{
+    color: greenyellow;
+}
+.fa-minus{
+    color: firebrick;
+}
+
+.cart-image{
+    height: 100px;
+    width: 100px;
+    margin-left: 50px;
+}
+.flex-container{
+    display: flex;
+}
+
+.fa-trash{
+    color: red;
+
+}
